@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getPostsAction, cleanNotificationAction } from 'src/redux/slices/posts'
+import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -35,6 +36,7 @@ const BlogView = () => {
     const { posts, notistackContent } = useSelector(state => state.posts);
     const dispatch = useDispatch();
     const classes = useStyles();
+    const { t, i18n } = useTranslation();
 
     console.log(notistackContent)
     //Component will mount
@@ -66,7 +68,7 @@ const BlogView = () => {
         <Box p={1} m={1} >
             <Box textAlign="center" fontFamily="Monospace" m={1}>
                 <Typography className={classes.title} variant="h1" gutterBottom>
-                    Posts View
+                    {t('BlogView.title')}
                 </Typography>
             </Box>
 

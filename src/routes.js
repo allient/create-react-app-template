@@ -18,7 +18,7 @@ export const CustomRoutes = ({ routes = [] }) => {
                             render={(props) => (
                                 <Layout>
                                     {route.routes
-                                        ? renderRoutes(route.routes)
+                                        ? <CustomRoutes routes={route.routes}/>
                                         : <Component {...props} />}
                                 </Layout>
                             )}
@@ -39,13 +39,17 @@ const routes = [
     {
         exact: true,
         path: '/',
-        layout: MainLayout,
-        component: lazy(() => import('src/views/BlogView'))
-    },
+        component: () => <Redirect to="/home" />
+      },
     {
         path: '/home',
         layout: MainLayout,
         routes: [
+            {
+                exact: true,
+                path: '/home',
+                component: lazy(() => import('src/views/BlogView'))
+            },
             {
                 exact: true,
                 path: '/home/:name/:lastName',
