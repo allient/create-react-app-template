@@ -9,7 +9,7 @@ import { createBrowserHistory } from 'history';
 import { SnackbarProvider } from 'notistack';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertDialog from 'react-alert-template-mui'
-import routes, { renderRoutes } from 'src/routes.js';
+import routes, { CustomRoutes } from 'src/routes.js';
 import { createTheme } from 'src/theme';
 const history = createBrowserHistory();
 
@@ -37,7 +37,7 @@ const App = () => {
         >
           <AlertProvider template={AlertDialog} {...options}>
             <Router history={history}>
-              {renderRoutes(routes)}
+              <CustomRoutes routes={routes}/>
             </Router>
           </AlertProvider>
         </SnackbarProvider>
